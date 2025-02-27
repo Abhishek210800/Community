@@ -7,6 +7,7 @@ function Category(props) {
   const { directoryData } = useDirectory();
   const categories = directoryData.directoryCategories;
 
+
   const [searchCompany, setSearchCompany] = useState("");
   const [catFilter, setCatFilter] = useState([]);
   const [copyData, setCopy] = useState(directoryData.directoryCompanies);

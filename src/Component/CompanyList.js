@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function CompanyList({ company, Data }) {
   // const { directoryData } = useDirectory();
+
   const [visibleItems, setVisibleItems] = useState(2);
 
   // Default likes

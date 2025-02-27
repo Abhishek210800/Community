@@ -156,7 +156,7 @@ export const DirectoryProvider = ({ children }) => {
     directoryCode = segments[2] || "ebn";
   }
   directoryCode = directoryCode.toLowerCase();
-
+  const { company } = useParams();
   const [directoryData, setDirectoryData] = useState(initialData);
   const [searchTerm, setSearchTerm] = useState("");
   const [categorySearchTerm, setCategorySearchTerm] = useState("");
@@ -166,9 +166,7 @@ export const DirectoryProvider = ({ children }) => {
   useEffect(() => {
     const fetchDirectoryData = async () => {
       try {
-        const response = await axios.get(
-          `https://app.aktivedirectory.com/api/directorydetails/${directoryCode}`
-        );
+        const response = await axios.get(`/api/directorydetails/ebn`);
         setDirectoryData({
           directoryDetails: response.data.companydetails || [],
           directoryCategories: response.data.directorycategories || [],
@@ -176,12 +174,12 @@ export const DirectoryProvider = ({ children }) => {
         });
       } catch (error) {
         console.error("Error fetching directory data:", error);
-        setDirectoryData(initialData); // Fallback to initial data in case of an error
+        setDirectoryData(initialData);
       }
     };
 
     fetchDirectoryData();
-  }, [directoryCode]);
+  }, [company]);
 
   return (
     <DirectoryContext.Provider
